@@ -1,7 +1,7 @@
 // woo-ai-grouped-products.php
 <?php
 /**
- * Plugin Name: WooCommerce AI Grouped Products
+ * Plugin Name: Woo AI Grouped Products
  * Plugin URI: https://code045.nl/woo-ai-grouped-products
  * Description: Automatically groups similar WooCommerce products into variable products based on title, category, and brand.
  * Version: 1.2.0

@@ -175,7 +175,7 @@ class WC_AI_Product_Matcher {
             )"
         );
     }
-}
+
     /**
      * Get product brand.
      */

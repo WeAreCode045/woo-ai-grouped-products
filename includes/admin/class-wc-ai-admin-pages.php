@@ -16,7 +16,7 @@ class WC_AI_Admin_Pages {
      * Add menu pages.
      */
     public function add_menu_pages() {
-        add_menu_page(
+        $hook = add_menu_page(
             __('AI Grouped Products', 'woo-ai-grouped-products'),
             __('AI Grouped Products', 'woo-ai-grouped-products'),
             'manage_woocommerce',
@@ -24,6 +24,24 @@ class WC_AI_Admin_Pages {
             array($this, 'render_dashboard_page'),
             'dashicons-randomize',
             56
+        );
+        
+        add_submenu_page(
+            'wc-ai-grouped-products',
+            __('Dashboard', 'woo-ai-grouped-products'),
+            __('Dashboard', 'woo-ai-grouped-products'),
+            'manage_woocommerce',
+            'wc-ai-grouped-products',
+            array($this, 'render_dashboard_page')
+        );
+        
+        add_submenu_page(
+            'wc-ai-grouped-products',
+            __('Settings', 'woo-ai-grouped-products'),
+            __('Settings', 'woo-ai-grouped-products'),
+            'manage_woocommerce',
+            'wc-ai-grouped-products-settings',
+            array($this, 'render_settings_page')
         );
     }
     
@@ -43,5 +61,16 @@ class WC_AI_Admin_Pages {
         }
         
         include WC_AI_GROUPED_PRODUCTS_PATH . 'templates/admin/dashboard/dashboard.php';
+    }
+    
+    /**
+     * Render settings page.
+     */
+    public function render_settings_page() {
+        if (!current_user_can('manage_woocommerce')) {
+            return;
+        }
+        
+        include WC_AI_GROUPED_PRODUCTS_PATH . 'templates/admin/settings/general.php';
     }
 }

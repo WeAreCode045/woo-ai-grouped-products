@@ -22,7 +22,6 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants.
-define('WC_AI_GROUPED_PRODUCTS_VERSION', '1.0.0');
 define('WC_AI_GROUPED_PRODUCTS_FILE', __FILE__);
 define('WC_AI_GROUPED_PRODUCTS_PATH', plugin_dir_path(__FILE__));
 define('WC_AI_GROUPED_PRODUCTS_URL', plugin_dir_url(__FILE__));

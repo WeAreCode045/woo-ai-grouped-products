@@ -1,4 +1,3 @@
-// includes/core/class-wc-ai-product-matcher.php
 <?php
 if (!defined('ABSPATH')) {
     exit;
@@ -175,7 +174,7 @@ class WC_AI_Product_Matcher {
             )"
         );
     }
-    
+
     /**
      * Get product brand.
      */

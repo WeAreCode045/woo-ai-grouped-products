@@ -1,4 +1,3 @@
-// assets/js/admin.js
 jQuery(document).ready(function($) {
     var isProcessing = false;
     var processingInterval = null;

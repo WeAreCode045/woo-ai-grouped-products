@@ -1,4 +1,3 @@
-// includes/admin/class-wc-ai-admin-notices.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

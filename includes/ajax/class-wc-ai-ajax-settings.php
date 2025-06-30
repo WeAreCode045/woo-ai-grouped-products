@@ -1,4 +1,3 @@
-// includes/ajax/class-wc-ai-ajax-settings.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

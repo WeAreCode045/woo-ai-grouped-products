@@ -1,4 +1,3 @@
-// includes/core/class-wc-ai-variable-product.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

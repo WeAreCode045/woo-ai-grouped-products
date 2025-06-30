@@ -1,4 +1,3 @@
-// includes/api/class-wc-ai-api-base.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

@@ -1,4 +1,3 @@
-// includes/settings/class-wc-ai-settings-general.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

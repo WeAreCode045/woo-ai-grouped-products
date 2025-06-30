@@ -1,4 +1,3 @@
-// woo-ai-grouped-products.php
 <?php
 /**
  * Plugin Name: Woo AI Grouped Products

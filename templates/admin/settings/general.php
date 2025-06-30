@@ -1,4 +1,3 @@
-// templates/admin/settings/general.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

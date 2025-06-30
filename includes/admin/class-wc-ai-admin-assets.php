@@ -1,4 +1,3 @@
-// includes/admin/class-wc-ai-admin-assets.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

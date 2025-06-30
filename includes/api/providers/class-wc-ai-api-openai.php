@@ -1,4 +1,3 @@
-// includes/api/providers/class-wc-ai-api-openai.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

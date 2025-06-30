@@ -1,4 +1,3 @@
-// templates/admin/dashboard/dashboard.php
 <?php
 if (!defined('ABSPATH')) {
     exit;

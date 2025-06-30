@@ -1,0 +1,617 @@
+/**
+ * WooCommerce AI Grouped Products - Admin Styles
+ */
+
+/* Dashboard Layout */
+.wc-ai-dashboard-wrapper {
+    margin: 20px 0;
+    max-width: 1200px;
+}
+
+.wc-ai-dashboard-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.wc-ai-dashboard-header h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* Stats Row */
+.wc-ai-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.wc-ai-stat-card {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.wc-ai-stat-card h3 {
+    margin: 0 0 5px;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #23282d;
+}
+
+.wc-ai-stat-card p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.wc-ai-stat-card p.description {
+    color: #646970;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* Control Groups */
+.wc-ai-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.wc-ai-control-group {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.wc-ai-control-group h3 {
+    margin: 0 0 20px;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 1.2em;
+}
+
+/* Form Fields */
+.wc-ai-field {
+    margin-bottom: 15px;
+}
+
+.wc-ai-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.wc-ai-field input[type="number"],
+.wc-ai-field select {
+    width: 100%;
+    max-width: 200px;
+}
+
+.wc-ai-field .description {
+    color: #646970;
+    font-style: italic;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Buttons */
+.wc-ai-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f1;
+}
+
+/* Progress Section */
+.wc-ai-progress-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.wc-ai-progress-bar {
+    height: 20px;
+    background: #f0f0f1;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.wc-ai-progress-bar-fill {
+    height: 100%;
+    background: #2271b1;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.wc-ai-progress-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.wc-ai-progress-text {
+    font-weight: 600;
+}
+
+/* Activity Log */
+.wc-ai-activity-log {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccd0d4;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.wc-ai-log-entries {
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.wc-ai-log-entry {
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.wc-ai-log-entry:last-child {
+    border-bottom: none;
+}
+
+.wc-ai-log-time {
+    color: #646970;
+    margin-right: 10px;
+}
+
+.wc-ai-log-success {
+    color: #00a32a;
+}
+
+.wc-ai-log-error {
+    color: #d63638;
+}
+
+.wc-ai-log-warning {
+    color: #dba617;
+}
+
+/* Modal */
+.wc-ai-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+}
+
+.wc-ai-modal-content {
+    background: #fff;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.wc-ai-modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wc-ai-modal-header h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.wc-ai-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #646970;
+    padding: 0;
+    line-height: 1;
+}
+
+.wc-ai-modal-body {
+    padding: 20px;
+}
+
+.wc-ai-modal-progress {
+    margin-top: 20px;
+}
+
+.wc-ai-modal-progress-bar {
+    height: 10px;
+    background: #f0f0f1;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.wc-ai-modal-progress-fill {
+    height: 100%;
+    background: #2271b1;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.wc-ai-modal-progress-text {
+    text-align: center;
+    font-size: 0.9em;
+    color: #646970;
+}
+
+.wc-ai-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #f0f0f1;
+    text-align: right;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .wc-ai-stats-row {
+        flex-direction: column;
+    }
+    
+    .wc-ai-stat-card {
+        width: 100%;
+    }
+    
+    .wc-ai-controls {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes wc-ai-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.wc-ai-pulse {
+    animation: wc-ai-pulse 1.5s infinite;
+}
+/* AI Integration Tabs */
+.wc-ai-tabs {
+    margin: 20px 0;
+}
+
+.wc-ai-tabs .nav-tab {
+    padding: 8px 15px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-right: 5px;
+    text-decoration: none;
+    border: 1px solid #ccd0d4;
+    border-bottom: none;
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+.wc-ai-tabs .nav-tab-active {
+    background: #f8f9fa;
+    border-bottom: 1px solid #f8f9fa;
+    margin-bottom: -1px;
+}
+
+.wc-ai-tabs .nav-tab:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Sub-tabs */
+.wc-ai-subtabs {
+    margin: 15px 0;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.wc-ai-subtabs ul.subsubsub {
+    margin: 0;
+    padding: 0;
+    float: none;
+}
+
+.wc-ai-subtabs ul.subsubsub li {
+    margin: 0;
+    padding: 0 10px 0 0;
+}
+
+.wc-ai-subtabs ul.subsubsub li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.wc-ai-subtabs ul.subsubsub li a.current {
+    font-weight: 600;
+    color: #1d2327;
+}
+
+/* Settings Sections */
+.wc-ai-settings-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.wc-ai-settings-section h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Form Elements */
+.wc-ai-form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.wc-ai-form-table th {
+    width: 200px;
+    text-align: left;
+    padding: 20px 10px 20px 0;
+    vertical-align: top;
+}
+
+.wc-ai-form-table td {
+    padding: 15px 10px;
+    vertical-align: top;
+}
+
+.wc-ai-form-table input[type="text"],
+.wc-ai-form-table input[type="password"],
+.wc-ai-form-table input[type="number"],
+.wc-ai-form-table select,
+.wc-ai-form-table textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+.wc-ai-form-table .description {
+    display: block;
+    margin-top: 5px;
+    color: #646970;
+    font-style: italic;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .wc-ai-form-table th,
+    .wc-ai-form-table td {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .wc-ai-form-table th {
+        padding-bottom: 5px;
+    }
+}
+
+/* assets/css/admin.css */
+.wc-ai-settings-wrap {
+    margin: 20px 0;
+}
+
+.wc-ai-settings-nav {
+    margin: 0 0 20px;
+    padding: 0;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.wc-ai-settings-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wc-ai-settings-nav li {
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.wc-ai-settings-nav a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    border: 1px solid #ccd0d4;
+    border-bottom: none;
+    background: #f1f1f1;
+    color: #23282d;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: -1px;
+}
+
+.wc-ai-settings-nav a.nav-tab-active {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.wc-ai-settings-content {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+    border-radius: 0 4px 4px 4px;
+}
+
+.wc-ai-settings-section {
+    margin-bottom: 30px;
+}
+
+.wc-ai-settings-section h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.wc-ai-settings-section .form-table {
+    margin-top: 0;
+}
+
+.wc-ai-settings-section .form-table th {
+    width: 250px;
+}
+
+.wc-ai-settings-section .form-table input[type="text"],
+.wc-ai-settings-section .form-table input[type="password"],
+.wc-ai-settings-section .form-table input[type="number"],
+.wc-ai-settings-section .form-table select,
+.wc-ai-settings-section .form-table textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+.wc-ai-settings-section .form-table input[type="number"] {
+    max-width: 100px;
+}
+
+.wc-ai-settings-section .form-table .description {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-style: italic;
+}
+
+.wc-ai-settings-section .submit {
+    margin-top: 20px;
+    padding: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .wc-ai-settings-section .form-table th,
+    .wc-ai-settings-section .form-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .wc-ai-settings-section .form-table th {
+        padding-bottom: 5px;
+    }
+}
+
+/* assets/css/admin.css */
+.woo-ai-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.woo-ai-dashboard__content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.woo-ai-dashboard__main {
+    flex: 1;
+    min-width: 0;
+}
+
+.woo-ai-dashboard__sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.woo-ai-dashboard__card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.woo-ai-dashboard__card h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.woo-ai-dashboard__card h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.woo-ai-progress-bar {
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.woo-ai-progress-bar__fill {
+    height: 100%;
+    background: #0073aa;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.woo-ai-progress-text {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+}
+
+.woo-ai-stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.woo-ai-stats li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.woo-ai-stats li:last-child {
+    border-bottom: none;
+}
+
+.woo-ai-stat-label {
+    font-weight: 500;
+}
+
+.woo-ai-stat-value {
+    font-weight: bold;
+}
+
+/* Responsive styles */
+@media (max-width: 960px) {
+    .woo-ai-dashboard__content {
+        flex-direction: column;
+    }
+    
+    .woo-ai-dashboard__sidebar {
+        width: 100%;
+    }
+}

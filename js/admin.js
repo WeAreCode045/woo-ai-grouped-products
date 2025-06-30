@@ -1,96 +1,191 @@
+// assets/js/admin.js
 jQuery(document).ready(function($) {
     var isProcessing = false;
-    var totalGroups = 0;
-    var processedGroups = 0;
-
-    // Start the product grouping process
-    $('#start-grouping').on('click', function(e) {
+    var processingInterval = null;
+    
+    // Start processing
+    $('#wc-ai-start-processing').on('click', function(e) {
         e.preventDefault();
         
         if (isProcessing) {
             return;
         }
         
-        if (!confirm('This will analyze and group your products. It may take a while. Continue?')) {
+        // Get settings
+        var minSimilarity = parseInt($('#wc-ai-min-similarity').val()) || 85;
+        var batchSize = parseInt($('#wc-ai-batch-size').val()) || 20;
+        
+        // Validate inputs
+        if (minSimilarity < 50 || minSimilarity > 100) {
+            alert('Minimum similarity must be between 50 and 100');
             return;
         }
         
-        isProcessing = true;
-        $('#progress-text').text(wcAIGroupedProducts.processing);
-        $('#progress-bar').show();
-        $('#start-grouping').prop('disabled', true);
+        if (batchSize < 1 || batchSize > 100) {
+            alert('Batch size must be between 1 and 100');
+            return;
+        }
         
-        // Start the process
-        processBatch();
-    });
-    
-    function processBatch() {
+        // Show processing UI
+        startProcessingUI();
+        
+        // Send AJAX request
         $.ajax({
             url: wcAIGroupedProducts.ajax_url,
             type: 'POST',
             data: {
-                action: 'process_product_grouping',
-                nonce: wcAIGroupedProducts.nonce
+                action: 'wc_ai_start_processing',
+                security: wcAIGroupedProducts.nonce,
+                min_similarity: minSimilarity,
+                batch_size: batchSize
             },
-            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    processedGroups += response.data.variables ? response.data.variables.length : 0;
-                    
-                    // Update progress
-                    if (response.data.variables && response.data.variables.length > 0) {
-                        var html = '<h3>' + response.data.message + '</h3><ul>';
-                        
-                        $.each(response.data.variables, function(i, variable) {
-                            html += '<li><a href="' + wcAIGroupedProducts.admin_url + 'post.php?post=' + 
-                                   variable.id + '&action=edit" target="_blank">' + 
-                                   variable.title + '</a> - ' + variable.count + ' variations</li>';
-                        });
-                        
-                        html += '</ul>';
-                        $('#results').append(html);
-                    } else {
-                        $('#results').append('<p>' + response.data.message + '</p>');
-                    }
-                    
-                    // Scroll to bottom to show progress
-                    $('html, body').animate({
-                        scrollTop: $(document).height()
-                    }, 1000);
-                    
-                    // Check if we're done
-                    if (response.data.complete) {
-                        completeProcessing(response.data.message);
-                    } else {
-                        // Process next batch
-                        setTimeout(processBatch, 500);
-                    }
+                    updateStatus();
                 } else {
-                    showError(response.data);
+                    stopProcessingUI();
+                    alert(response.data.message || 'An error occurred');
                 }
             },
-            error: function(xhr, status, error) {
-                showError('Error: ' + error);
+            error: function() {
+                stopProcessingUI();
+                alert('An error occurred while starting the process');
+            }
+        });
+    });
+    
+    // Stop processing
+    $('#wc-ai-stop-processing').on('click', function(e) {
+        e.preventDefault();
+        
+        if (!isProcessing) {
+            return;
+        }
+        
+        // Send AJAX request
+        $.ajax({
+            url: wcAIGroupedProducts.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'wc_ai_stop_processing',
+                security: wcAIGroupedProducts.nonce
+            },
+            complete: function() {
+                stopProcessingUI();
+            }
+        });
+    });
+    
+    // Update processing status
+    function updateStatus() {
+        if (!isProcessing) {
+            return;
+        }
+        
+        $.ajax({
+            url: wcAIGroupedProducts.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'wc_ai_check_status',
+                security: wcAIGroupedProducts.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    updateProcessingUI(response.data);
+                    
+                    // Continue checking status if still processing
+                    if (response.data.status === 'processing') {
+                        setTimeout(updateStatus, 2000);
+                    } else {
+                        stopProcessingUI();
+                    }
+                } else {
+                    stopProcessingUI();
+                    alert(response.data.message || 'An error occurred while checking status');
+                }
+            },
+            error: function() {
+                stopProcessingUI();
+                alert('An error occurred while checking status');
             }
         });
     }
     
-    function updateProgress(processed, total) {
-        var percentage = Math.round((processed / total) * 100);
-        $('#progress-bar-inner').css('width', percentage + '%').text(percentage + '%');
+    // Start processing UI
+    function startProcessingUI() {
+        isProcessing = true;
+        $('#wc-ai-start-processing').prop('disabled', true);
+        $('#wc-ai-stop-processing').show();
+        $('.woo-ai-processing-status').show();
+        $('.woo-ai-processing-log').show();
+        $('#wc-ai-processing-log-content').empty();
+        
+        // Start checking status
+        updateStatus();
     }
     
-    function completeProcessing(message) {
+    // Stop processing UI
+    function stopProcessingUI() {
         isProcessing = false;
-        $('#progress-text').text(wcAIGroupedProducts.complete + ' ' + message);
-        $('#start-grouping').prop('disabled', false);
-        updateProgress(100, 100);
+        $('#wc-ai-start-processing').prop('disabled', false);
+        $('#wc-ai-stop-processing').hide();
     }
     
-    function showError(message) {
-        isProcessing = false;
-        $('#progress-text').text('Error: ' + message);
-        $('#start-grouping').prop('disabled', false);
-        $('#progress-bar-inner').css('background-color', '#dc3232');
+    // Update processing UI
+    function updateProcessingUI(data) {
+        // Update progress bar
+        var progress = data.progress || 0;
+        $('.woo-ai-progress-bar__fill').css('width', progress + '%');
+        $('.woo-ai-progress-percent').text(progress + '%');
+        
+        // Update counts
+        if (data.processed !== undefined && data.total !== undefined) {
+            $('.woo-ai-progress-counts').text('(' + data.processed + '/' + data.total + ')');
+        }
+        
+        // Update stats
+        if (data.stats) {
+            if (data.stats.total_products !== undefined) {
+                $('#wc-ai-total-products').text(data.stats.total_products);
+            }
+            if (data.stats.processed_products !== undefined) {
+                $('#wc-ai-processed-products').text(data.stats.processed_products);
+            }
+            if (data.stats.variable_products !== undefined) {
+                $('#wc-ai-variable-products').text(data.stats.variable_products);
+            }
+        }
+        
+        // Update log
+        if (data.logs && data.logs.length) {
+            var $logContent = $('#wc-ai-processing-log-content');
+            data.logs.forEach(function(log) {
+                $logContent.prepend('<div class="log-entry">[' + log.time + '] ' + log.message + '</div>');
+            });
+            
+            // Auto-scroll to bottom
+            $logContent.scrollTop($logContent[0].scrollHeight);
+        }
     }
+    
+    // Initialize
+    function init() {
+        // Load initial stats
+        $.ajax({
+            url: wcAIGroupedProducts.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'wc_ai_get_stats',
+                security: wcAIGroupedProducts.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    updateProcessingUI({ stats: response.data });
+                }
+            }
+        });
+    }
+    
+    // Initialize on page load
+    init();
 });
